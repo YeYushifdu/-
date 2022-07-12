@@ -18,12 +18,25 @@ void game() {    //猜数字游戏的实现
 	//rand函数返回了一个0-32767之间的数字
 	//rand在被调用前就已经生成好了随机数
 
-	int ret = rand()%100+1;    //%100的余数是0-99，然后+1，范围就是1-100
+	int ret = rand() % 100 + 1;    //%100的余数是0-99，然后+1，范围就是1-100
 	//猜数字
+	int guess = 0;
 	while (1) {
 		printf("请输入猜的数字：>");
+		scanf("%d", &guess);
+		if (guess < ret) {
+			printf("猜小了\n");
+		}
+		else if (guess > ret) {
+			printf("猜大了\n");
+		}
+		else {
+			printf("恭喜你，猜对了！\n");
+			break;
+		}
 	}
-int main() {
+}
+	int main() {
 	int input = 0;
 	//时间-时间戳
 	srand((unsigned int)time(NULL));
