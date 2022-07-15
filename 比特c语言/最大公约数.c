@@ -14,20 +14,33 @@
 //	return 0;
 //}
 
+//int main() {
+//	int m = 0, n = 0, max = 0;
+//	scanf("%d%d", &m, &n);
+//	//假设最大公约数就是m和n的较小值
+//	if (m > n)
+//		max = n;
+//	else
+//		max = m;
+//	while (1) {
+//		if (m % max == 0 && n % max == 0) {
+//			printf("最大公约数是%d", max);
+//			break;
+//		}
+//		max--;
+//	}
+//	return 0;
+//}
+
+//辗转相除法
 int main() {
-	int m = 0, n = 0, max = 0;
+	int m = 0, n = 0, tmp = 0;
 	scanf("%d%d", &m, &n);
-	//假设最大公约数就是m和n的较小值
-	if (m > n)
-		max = n;
-	else
-		max = m;
-	while (1) {
-		if (m % max == 0 && n % max == 0) {
-			printf("最大公约数是%d", max);
-			break;
-		}
-		max--;
+	while (m % n) {
+		tmp = m % n;
+		m = n;
+		n = tmp;
 	}
+	printf("最大公约数：%d\n", n);
 	return 0;
 }
