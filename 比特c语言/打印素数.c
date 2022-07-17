@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
+#include<math.h>
 //打印素数
 //int main() {
 //	int i = 100, j = 0, con = 0;
@@ -37,11 +38,31 @@
 //	return 0;
 //}
 
+//int main() {
+//	int i = 0, j = 0;
+//	for (i = 100; i <= 200; i++) {
+//		int flag = 1;
+//		for (j = 2; j < i; j++) {
+//			if (i % j == 0) {
+//				flag = 0;    //不是素数
+//				break;
+//			}
+//		}
+//		if (flag == 1) {
+//			printf("%d ", i);
+//		}
+//	}
+//	return 0;
+//}
+
+//考虑到：
+//若m=a*b，则a和b中至少有一个数字小于等于根号m
+//即因子只需判断至根号m
 int main() {
 	int i = 0, j = 0;
 	for (i = 100; i <= 200; i++) {
 		int flag = 1;
-		for (j = 2; j < i; j++) {
+		for (j = 2; j <= sqrt(i); j++) {
 			if (i % j == 0) {
 				flag = 0;    //不是素数
 				break;
