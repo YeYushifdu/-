@@ -47,3 +47,17 @@ int main() {
 
 	return 0;
 }
+
+goto语句适用场合
+for () {
+	for () {
+		for () {
+			if (disaster) {
+				goto error;
+			}
+		}
+	}
+}
+error:
+if(disaster)
+//处理错误情况
