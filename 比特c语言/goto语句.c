@@ -15,19 +15,35 @@
 //只要运行起来，电脑就在60s内关机，如果输入：stop  就取消关机
 //shutdown -s -t 60  执行60s关机
 //shutdown -a  取消关机
+//int main() {
+//	char input[20] = { 0 };
+//	//system()--执行系统命令
+//	system("shutdown -s -t 60");
+//again:
+//	printf("电脑将在60s内关机，输入：stop以取消关机");
+//	scanf("%s", input);
+//	//if (input == "stop") {    //两个字符串比较不能使用"==",应该使用strcmp()
+//	if(strcmp(input,"stop")==0){
+//		system("shutdown -a");
+//	}
+//	else {
+//		goto again;
+//	}
+//	return 0;
+//}
+
 int main() {
 	char input[20] = { 0 };
 	//system()--执行系统命令
 	system("shutdown -s -t 60");
-again:
-	printf("电脑将在60s内关机，输入：stop以取消关机");
-	scanf("%s", input);
-	//if (input == "stop") {    //两个字符串比较不能使用"==",应该使用strcmp()
-	if(strcmp(input,"stop")==0){
-		system("shutdown -a");
+	while (1) {
+		printf("电脑将在60s内关机，输入：stop以取消关机");
+		scanf("%s", input);
+		if (strcmp(input, "stop") == 0) {
+			system("shutdown -a");
+			break;
+		}
 	}
-	else {
-		goto again;
-	}
+
 	return 0;
 }
