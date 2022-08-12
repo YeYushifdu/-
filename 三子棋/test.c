@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include<stdio.h>
 #include"game.h"
+
 void menu() {
 	printf("********************\n");
 	printf("****** 1.play ******\n");
@@ -10,12 +10,22 @@ void game() {
 	//用二维数组存储数据
 	char board[ROW][COL];
 	//初始化为空格
-	Intboard(board, ROW, COL);
+	Intboard(board, ROW, COL);		//如果不初始化的话打印棋盘会出现问号
 	//打印棋盘——本质是打印数组的内容
-	Displayboard()
+	Displayboard(board, ROW, COL);
+	while (1) {
+		//玩家下棋
+		Playermove(board, ROW, COL);
+		Displayboard(board, ROW, COL);
+		//电脑下棋
+		Computermove(board, ROW, COL);
+		Displayboard(board, ROW, COL);
+
+	}
 }
 int main() {
 	int input = 0;
+	srand((unsigned int)time(NULL));
 	do {
 		menu();
 		printf("请选择：>");
