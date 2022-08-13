@@ -84,3 +84,10 @@ void Computermove(char board[ROW][COL], int row, int col) {		//µçÄÔÏÂÆå
 		}
 	}
 }
+
+char Iswin(char board[ROW][COL], int row, int col) {
+	int i = 0;
+	for (i = 0; i < row; i++) {
+
+	}
+}
