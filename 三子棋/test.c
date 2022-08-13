@@ -13,15 +13,35 @@ void game() {
 	Intboard(board, ROW, COL);		//如果不初始化的话打印棋盘会出现问号
 	//打印棋盘——本质是打印数组的内容
 	Displayboard(board, ROW, COL);
+	char ret = 0;		//接收游戏状态
 	while (1) {
 		//玩家下棋
 		Playermove(board, ROW, COL);
 		Displayboard(board, ROW, COL);
+		//判断玩家是否先连成三子
+		char Iswin(board, ROW, COL);
+		if (ret != 'C') {
+			break;		//game over
+		}
 		//电脑下棋
 		Computermove(board, ROW, COL);
 		Displayboard(board, ROW, COL);
-
+		//判断电脑是否先连成三子
+		char Iswin(board, ROW, COL);
+		if (ret != 'C') {
+			break;		//game over
+		}
 	}
+	if (ret == '*') {
+		printf("玩家获胜\n");
+	}
+	else if (ret == '#') {
+		printf("电脑获胜\n");
+	}
+	else {
+		printf("平局\n");
+	}
+	Displayboard(board, ROW, COL);
 }
 int main() {
 	int input = 0;
