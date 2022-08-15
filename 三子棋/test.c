@@ -19,7 +19,7 @@ void game() {
 		Playermove(board, ROW, COL);
 		Displayboard(board, ROW, COL);
 		//判断玩家是否先连成三子
-		char Iswin(board, ROW, COL);
+		ret = Iswin(board, ROW, COL);
 		if (ret != 'C') {
 			break;		//game over
 		}
@@ -27,7 +27,7 @@ void game() {
 		Computermove(board, ROW, COL);
 		Displayboard(board, ROW, COL);
 		//判断电脑是否先连成三子
-		char Iswin(board, ROW, COL);
+		ret = Iswin(board, ROW, COL);
 		if (ret != 'C') {
 			break;		//game over
 		}

@@ -85,9 +85,41 @@ void Computermove(char board[ROW][COL], int row, int col) {		//电脑下棋
 	}
 }
 
+int Isfull(char board[ROW][COL], int row, int col) {
+	int i = 0, j = 0;
+	for (i = 0; i < row; i++) {
+		for (j = 0; j < col; j++) {
+			if (board[i][j] == ' ') {
+				return 0;		//棋盘没满
+			}
+		}
+	}
+	return 1;		//棋盘满了
+}
+
 char Iswin(char board[ROW][COL], int row, int col) {
 	int i = 0;
-	for (i = 0; i < row; i++) {
-
+	for (i = 0; i < row; i++) {		//判断三行
+		if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != ' ') {
+			return board[i][0];		//无需判断连成三行的是哪个符号
+		}
 	}
+	for (i = 0; i < col; i++) {		//判断三列
+		if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[0][i] != ' ') {
+			return board[0][i];
+		}
+	}
+	//判断对角线
+	if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != ' ') {
+		return board[0][0];
+	}
+	if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != ' ') {
+		return board[0][2];
+	}
+	//判断平局,棋盘满了返回1，不满返回0
+	int ret = Isfull(board, row, col);
+	if (ret == 1) {
+		return 'Q';
+	}
+	return 'C';		//游戏继续
 }
