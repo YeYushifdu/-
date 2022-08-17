@@ -19,7 +19,7 @@ void game() {
 		Playermove(board, ROW, COL);
 		Displayboard(board, ROW, COL);
 		//判断玩家是否先连成三子
-		ret = Iswin(board, ROW, COL);
+		ret = Iswin(board, ROW, COL, N);
 		if (ret != 'C') {
 			break;		//game over
 		}
@@ -27,7 +27,7 @@ void game() {
 		Computermove(board, ROW, COL);
 		Displayboard(board, ROW, COL);
 		//判断电脑是否先连成三子
-		ret = Iswin(board, ROW, COL);
+		ret = Iswin(board, ROW, COL, N);
 		if (ret != 'C') {
 			break;		//game over
 		}
@@ -41,7 +41,7 @@ void game() {
 	else {
 		printf("平局\n");
 	}
-	Displayboard(board, ROW, COL);
+	Displayboard(board, ROW, COL, N);
 }
 int main() {
 	int input = 0;
@@ -52,7 +52,7 @@ int main() {
 		scanf("%d", &input);
 		switch (input) {
 		case 1:
-			printf("三子棋游戏\n");
+			printf("%d子棋游戏\n",N);
 			game();
 			break;
 		case 0:
