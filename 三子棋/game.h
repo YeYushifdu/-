@@ -1,8 +1,8 @@
 #pragma once
 //符号的定义
-#define ROW 11		//行数
-#define COL 11		//列数
-#define N 5		//n子棋
+#define ROW 3		//行数
+#define COL 3		//列数
+#define N 3		//n子棋
 
 //头文件的包含
 #include<stdio.h>

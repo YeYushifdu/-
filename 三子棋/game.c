@@ -72,19 +72,86 @@ void Playermove(char board[ROW][COL], int row, int col) {		//玩家下棋
 	}
 }
 
+//void Computermove(char board[ROW][COL], int row, int col) {		//电脑下棋
+//	printf("电脑回合：>\n");
+//	while (1) {
+//		int x = rand() % row;
+//		int y = rand() % col;		//生成的随机数一定合法
+//		//判断坐标是否被占用
+//		if (board[x][y] == ' ') {		//未被占用
+//			board[x][y] = '#';		//电脑下'#'
+//			break;
+//		}
+//	}
+//}
+
 void Computermove(char board[ROW][COL], int row, int col) {		//电脑下棋
 	printf("电脑回合：>\n");
 	while (1) {
-		int x = rand() % row;
-		int y = rand() % col;		//生成的随机数一定合法
-		//判断坐标是否被占用
-		if (board[x][y] == ' ') {		//未被占用
-			board[x][y] = '#';		//电脑下'#'
-			break;
+		int i = 0, j = 0;
+		for (i = 0; i < row; i++) {		//堵玩家成行或自己连成行
+			if (board[i][0] == board[i][1] && board[i][0] != ' ' && board[i][2] == ' ') {
+				board[i][2] = '#';
+				return;
+			}
+			else if (board[i][0] == board[i][2] && board[i][0] != ' ' && board[i][1] == ' ') {
+				board[i][1] = '#';
+				return;
+			}
+			else if (board[i][1] == board[i][2] && board[i][1] != ' ' && board[i][0] == ' ') {
+				board[i][0] = '#';
+				return;
+			}
+		}
+		for (j = 0; j < col; j++) {		//堵玩家成行或自己连成行
+			if (board[0][j] == board[1][j] && board[0][j] != ' ' && board[2][j] == ' ') {
+				board[2][j] = '#';
+				return;
+			}
+			else if (board[0][j] == board[2][j] && board[0][j] != ' ' && board[1][j] == ' ') {
+				board[1][j] = '#';
+				return;
+			}
+			else if (board[1][j] == board[2][j] && board[1][j] != ' ' && board[0][j] == ' ') {
+				board[0][j] = '#';
+				return;
+			}
+		}
+		if (board[0][0] == board[1][1] && board[0][0] != ' ' && board[2][2] == ' ') {
+			board[2][2] = '#';
+			return;
+		}
+		if (board[0][0] == board[2][2] && board[0][0] != ' ' && board[1][1] == ' ') {
+			board[1][1] = '#';
+			return;
+		}
+		if (board[1][1] == board[2][2] && board[1][1] != ' ' && board[0][0] == ' ') {
+			board[0][0] = '#';
+			return;
+		}
+		if (board[0][2] == board[1][1] && board[0][2] != ' ' && board[2][0] == ' ') {
+			board[2][0] = '#';
+			return;
+		}
+		if (board[0][2] == board[2][0] && board[0][2] != ' ' && board[1][1] == ' ') {
+			board[1][1] = '#';
+			return;
+		}
+		if (board[1][1] == board[2][0] && board[1][1] != ' ' && board[0][2] == ' ') {
+			board[0][2] = '#';
+			return;
+		}
+		while (1) {
+			int x = rand() % row;
+			int y = rand() % col;		//生成的随机数一定合法
+					//判断坐标是否被占用
+			if (board[x][y] == ' ') {		//未被占用
+				board[x][y] = '#';		//电脑下'#'
+				return;
+			}
 		}
 	}
 }
-
 
 //char Iswin(char board[ROW][COL], int row, int col) {		//判断游戏状态
 //	int i = 0;
