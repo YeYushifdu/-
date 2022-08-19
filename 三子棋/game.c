@@ -12,7 +12,7 @@ void Intboard(char board[ROW][COL], int row, int col) {		//初始化棋盘
 	}
 }
 
-//void Displayboard(char board[ROW][COL], int row, int col) {		//打印棋盘
+//void Displayboard(char board[ROW][COL], int row, int col) {		//打印棋盘//三子棋
 //	int i = 0;
 //	for (i = 0; i < row; i++) {
 //		printf(" %c | %c | %c \n", board[i][0], board[i][1], board[i][2]);
@@ -23,7 +23,7 @@ void Intboard(char board[ROW][COL], int row, int col) {		//初始化棋盘
 //	}
 //}		//只适用于3列
 
-void Displayboard(char board[ROW][COL], int row, int col) {		//打印棋盘
+void Displayboard(char board[ROW][COL], int row, int col) {		//打印棋盘//大棋盘
 	int i = 0;
 	for (i = 0; i < row; i++) {
 		int j = 0;
@@ -72,7 +72,7 @@ void Playermove(char board[ROW][COL], int row, int col) {		//玩家下棋
 	}
 }
 
-//void Computermove(char board[ROW][COL], int row, int col) {		//电脑下棋
+//void Computermove(char board[ROW][COL], int row, int col) {		//电脑下棋//三子棋//智障
 //	printf("电脑回合：>\n");
 //	while (1) {
 //		int x = rand() % row;
@@ -85,61 +85,144 @@ void Playermove(char board[ROW][COL], int row, int col) {		//玩家下棋
 //	}
 //}
 
-void Computermove(char board[ROW][COL], int row, int col) {		//电脑下棋
+//void Computermove(char board[ROW][COL], int row, int col) {		//电脑下棋//三子棋//智能
+//	printf("电脑回合：>\n");
+//	while (1) {
+//		int i = 0, j = 0;
+//		for (i = 0; i < row; i++) {		//堵玩家成行或自己连成行
+//			if (board[i][0] == board[i][1] && board[i][0] != ' ' && board[i][2] == ' ') {
+//				board[i][2] = '#';
+//				return;
+//			}
+//			else if (board[i][0] == board[i][2] && board[i][0] != ' ' && board[i][1] == ' ') {
+//				board[i][1] = '#';
+//				return;
+//			}
+//			else if (board[i][1] == board[i][2] && board[i][1] != ' ' && board[i][0] == ' ') {
+//				board[i][0] = '#';
+//				return;
+//			}
+//		}
+//		for (j = 0; j < col; j++) {		//堵玩家成行或自己连成行
+//			if (board[0][j] == board[1][j] && board[0][j] != ' ' && board[2][j] == ' ') {
+//				board[2][j] = '#';
+//				return;
+//			}
+//			else if (board[0][j] == board[2][j] && board[0][j] != ' ' && board[1][j] == ' ') {
+//				board[1][j] = '#';
+//				return;
+//			}
+//			else if (board[1][j] == board[2][j] && board[1][j] != ' ' && board[0][j] == ' ') {
+//				board[0][j] = '#';
+//				return;
+//			}
+//		}
+//		if (board[0][0] == board[1][1] && board[0][0] != ' ' && board[2][2] == ' ') {
+//			board[2][2] = '#';
+//			return;
+//		}
+//		if (board[0][0] == board[2][2] && board[0][0] != ' ' && board[1][1] == ' ') {
+//			board[1][1] = '#';
+//			return;
+//		}
+//		if (board[1][1] == board[2][2] && board[1][1] != ' ' && board[0][0] == ' ') {
+//			board[0][0] = '#';
+//			return;
+//		}
+//		if (board[0][2] == board[1][1] && board[0][2] != ' ' && board[2][0] == ' ') {
+//			board[2][0] = '#';
+//			return;
+//		}
+//		if (board[0][2] == board[2][0] && board[0][2] != ' ' && board[1][1] == ' ') {
+//			board[1][1] = '#';
+//			return;
+//		}
+//		if (board[1][1] == board[2][0] && board[1][1] != ' ' && board[0][2] == ' ') {
+//			board[0][2] = '#';
+//			return;
+//		}
+//		while (1) {
+//			int x = rand() % row;
+//			int y = rand() % col;		//生成的随机数一定合法
+//					//判断坐标是否被占用
+//			if (board[x][y] == ' ') {		//未被占用
+//				board[x][y] = '#';		//电脑下'#'
+//				return;
+//			}
+//		}
+//	}
+//}
+
+void Computermove(char board[ROW][COL], int row, int col) {		//电脑下棋//四子棋大棋盘
+	//1.连成两子(堵左边)
+	//2.#+连成三子(堵右边)
+	//3.*+' '+*(堵左边)
 	printf("电脑回合：>\n");
 	while (1) {
 		int i = 0, j = 0;
 		for (i = 0; i < row; i++) {		//堵玩家成行或自己连成行
-			if (board[i][0] == board[i][1] && board[i][0] != ' ' && board[i][2] == ' ') {
-				board[i][2] = '#';
-				return;
-			}
-			else if (board[i][0] == board[i][2] && board[i][0] != ' ' && board[i][1] == ' ') {
-				board[i][1] = '#';
-				return;
-			}
-			else if (board[i][1] == board[i][2] && board[i][1] != ' ' && board[i][0] == ' ') {
-				board[i][0] = '#';
-				return;
-			}
-		}
-		for (j = 0; j < col; j++) {		//堵玩家成行或自己连成行
-			if (board[0][j] == board[1][j] && board[0][j] != ' ' && board[2][j] == ' ') {
-				board[2][j] = '#';
-				return;
-			}
-			else if (board[0][j] == board[2][j] && board[0][j] != ' ' && board[1][j] == ' ') {
-				board[1][j] = '#';
-				return;
-			}
-			else if (board[1][j] == board[2][j] && board[1][j] != ' ' && board[0][j] == ' ') {
-				board[0][j] = '#';
-				return;
+			for (j = 1; j < col - 2; j++) {
+				if (board[i][j] == board[i][j + 1] && board[i][j] != ' ' && board[i][j - 1] == ' ') {
+					board[i][j - 1] = '#';
+					return;
+				}
+				else if (board[i][j] == board[i][j + 1] && board[i][j] == board[i][j + 2] && board[i][j] != ' ') {
+					board[i][j + 3] = '#';
+					return;
+				}
+				else if (board[i][j] == board[i][j + 2] && board[i][j] != ' ') {
+					board[i][j + 1] = '#';
+					return;
+				}
 			}
 		}
-		if (board[0][0] == board[1][1] && board[0][0] != ' ' && board[2][2] == ' ') {
-			board[2][2] = '#';
-			return;
+		for (i = 1; i < row - 2; i++) {
+			for (j = 0; j < col; j++) {
+				if (board[i][j] == board[i + 1][j] && board[i][j] != ' ' && board[i - 1][j] == ' ') {
+					board[i - 1][j] = '#';
+					return;
+				}
+				else if (board[i][j] == board[i + 1][j] && board[i][j] == board[i + 2][j] && board[i][j] != ' ') {
+					board[i + 3][j] = '#';
+					return;
+				}
+				else if (board[i][j] == board[i + 2][j] && board[i][j] != ' ') {
+					board[i + 1][j] = '#';
+					return;
+				}
+			}
 		}
-		if (board[0][0] == board[2][2] && board[0][0] != ' ' && board[1][1] == ' ') {
-			board[1][1] = '#';
-			return;
+		for (i = 1; i < row - 2; i++) {
+			for (j = 1; j < col - 2; j++) {
+				if (board[i][j] == board[i + 1][j + 1] && board[i][j] != ' ' && board[i - 1][j - 1] == ' ') {
+					board[i - 1][j - 1] = '#';
+					return;
+				}
+				else if (board[i][j] == board[i + 1][j + 1] && board[i][j] == board[i + 2][j + 2] && board[i][j] != ' ') {
+					board[i + 3][j + 3] = '#';
+					return;
+				}
+				else if (board[i][j] == board[i + 2][j + 2] && board[i][j] != ' ') {
+					board[i + 1][j + 1] = '#';
+					return;
+				}
+			}
 		}
-		if (board[1][1] == board[2][2] && board[1][1] != ' ' && board[0][0] == ' ') {
-			board[0][0] = '#';
-			return;
-		}
-		if (board[0][2] == board[1][1] && board[0][2] != ' ' && board[2][0] == ' ') {
-			board[2][0] = '#';
-			return;
-		}
-		if (board[0][2] == board[2][0] && board[0][2] != ' ' && board[1][1] == ' ') {
-			board[1][1] = '#';
-			return;
-		}
-		if (board[1][1] == board[2][0] && board[1][1] != ' ' && board[0][2] == ' ') {
-			board[0][2] = '#';
-			return;
+		for (i = 1; i < row - 2; i++) {
+			for (j = 1; j < col - 2; j++) {
+				if (board[i][j] == board[i + 1][j - 1] && board[i][j] != ' ' && board[i - 1][j + 1] == ' ') {
+					board[i - 1][j] = '#';
+					return;
+				}
+				else if (board[i][j] == board[i + 1][j - 1] && board[i][j] == board[i + 2][j - 2] && board[i][j] != ' ') {
+					board[i + 3][j - 3] = '#';
+					return;
+				}
+				else if (board[i][j] == board[i + 2][j - 2] && board[i][j] != ' ') {
+					board[i + 1][j - 1] = '#';
+					return;
+				}
+			}
 		}
 		while (1) {
 			int x = rand() % row;
@@ -151,9 +234,9 @@ void Computermove(char board[ROW][COL], int row, int col) {		//电脑下棋
 			}
 		}
 	}
-}
+}//只要先在斜对角连成2子，再形成"L"形玩家就可以赢，一般电脑赢不了
 
-//char Iswin(char board[ROW][COL], int row, int col) {		//判断游戏状态
+//char Iswin(char board[ROW][COL], int row, int col) {		//判断游戏状态//三子棋
 //	int i = 0;
 //	for (i = 0; i < row; i++) {		//判断三行
 //		if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != ' ') {
@@ -180,7 +263,7 @@ void Computermove(char board[ROW][COL], int row, int col) {		//电脑下棋
 //	return 'C';		//游戏继续
 //}
 
-//char Iswin(char board[ROW][COL], int row, int col) {		//判断游戏状态
+//char Iswin(char board[ROW][COL], int row, int col) {		//判断游戏状态//三子棋大棋盘
 //	int i = 0, j = 0;
 //	for (i = 0; i < row; i++) {		//判断三行
 //		for (j = 0; j < col - 2; j++) {
@@ -231,7 +314,7 @@ int Isfull(char board[ROW][COL], int row, int col) {
 	return 1;		//棋盘满了
 }
 
-char Iswin(char board[ROW][COL], int row, int col,int n) {		//判断游戏状态
+char Iswin(char board[ROW][COL], int row, int col,int n) {		//判断游戏状态//n子棋
 	int i = 0, j = 0, k = 0, flag = 1;
 	for (i = 0; i < row; i++) {		
 		for (j = 0; j < col + 1 - n; j++) {

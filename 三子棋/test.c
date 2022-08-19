@@ -6,6 +6,7 @@ void menu() {
 	printf("****** 1.play ******\n");
 	printf("****** 0.exit ******\n");
 }
+
 void game() {
 	//用二维数组存储数据
 	char board[ROW][COL];
@@ -43,6 +44,7 @@ void game() {
 	}
 	Displayboard(board, ROW, COL, N);
 }
+
 int main() {
 	int input = 0;
 	srand((unsigned int)time(NULL));
