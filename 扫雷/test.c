@@ -9,7 +9,14 @@ void menu() {
 }
 
 void game() {
-
+	char mine[ROWS][COLS];		//隐式数组，存放布置好的雷的信息
+	char show[ROWS][COLS];		//显式数组，存放排查出雷的信息
+	//初始化棋盘
+	Intboard(mine, ROWS, COLS, '0');
+	Intboard(show, ROWS, COLS, '*');
+	//打印棋盘//只打印中间9*9
+	Displayboard(mine, ROW, COL);
+	Displayboard(show, ROW, COL);
 }
 
 int main() {
@@ -20,8 +27,8 @@ int main() {
 		scanf("%d", &input);
 		switch(input) {
 			case 1:
-				game();		//扫雷游戏
 				printf("扫雷游戏\n");
+				game();		//扫雷游戏
 				break;
 			case 0:
 				printf("退出游戏\n");
