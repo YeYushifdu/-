@@ -15,12 +15,18 @@ void game() {
 	Intboard(mine, ROWS, COLS, '0');
 	Intboard(show, ROWS, COLS, '*');
 	//打印棋盘//只打印中间9*9
-	Displayboard(mine, ROW, COL);
+	//Displayboard(mine, ROW, COL);		//仅供测试，实际游戏无需打印
 	Displayboard(show, ROW, COL);
+	//布置雷
+	Setmine(mine, ROW, COL);
+	//Displayboard(mine, ROW, COL);		//仅供测试
+	//排查雷
+	Findmine(mine, show, ROW, COL);
 }
 
 int main() {
 	int input = 0;
+	srand((unsigned int)time(NULL));
 	do {
 		menu();
 		printf("请选择：>");

@@ -13,11 +13,91 @@ void Intboard(char board[ROWS][COLS], int rows, int cols, char set) {		//≥ı ºªØ∆
 void Displayboard(char board[ROWS][COLS], int row, int col) {		//¥Ú”°∆Â≈Ã
 	int i = 0, j = 0;
 	printf("----------------------\n");
+	for (j = 0; j <= col; j++) {
+		printf("%d ", j);		//¥Ú”°¡–∫≈
+	}
+	printf("\n");
 	for (i = 1; i <= row; i++) {
+		printf("%d ", i);		//¥Ú”°––∫≈
 		for (j = 1; j <= col; j++) {
 			printf("%c ", board[i][j]);
 		}
 		printf("\n");		//¥Ú”°ÕÍ“ª––÷Æ∫Ûªª––
 	}
 	printf("----------------------\n");
+}
+
+void Setmine(char mine[ROWS][COLS], int row, int col) {		//≤º÷√¿◊
+	//≤º÷√10∏ˆ¿◊
+	int count = N;
+	while (count) {
+		//…˙≥…ÀÊª˙œ¬±Í
+		int x = rand() % row + 1;
+		int y = rand() % col + 1;
+		if (mine[x][y] == '0') {		//≈–∂œ «∑Ò“—æ≠”–¿◊
+			mine[x][y] = '1';
+			count--;
+		}
+	}
+}
+
+//static
+//1.–ﬁ Œæ÷≤ø±‰¡ø
+//2.–ﬁ Œ»´æ÷±‰¡ø
+//3.–ﬁ Œ∫Ø ˝£¨÷ªƒ‹‘⁄¥À‘¥Œƒº˛ π”√
+static int get_mine_count(char mine[ROWS][COLS], int x, int y) {		//Õ≥º∆÷‹Œß¿◊µƒ∏ˆ ˝
+	int count = 0, i = 0, j = 0;
+	for (i = x - 1; i < x + 2; i++) {
+		for (j = y - 1; j < y + 2; j++) {
+			if (mine[i][j] == '1') {
+				count++;		//◊‘º∫±æ…Ì≤ª «¿◊£¨count≤ª±‰
+			}
+		}
+	}
+	return count;
+}
+
+//int get_mine_count(char mine[ROWS][COLS], int x, int y) {
+//	return mine[x - 1][y - 1] +
+//		mine[x - 1][y] +
+//		mine[x - 1][y + 1] +
+//		mine[x][y - 1] +
+//		mine[x][y + 1] +
+//		mine[x + 1][y - 1] +
+//		mine[x + 1][y] +
+//		mine[x + 1][y + 1] - 8 * '0';
+//}
+
+void Findmine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col) {		//≈≈≤È¿◊
+	//1. ‰»Î≈≈≤Èµƒ◊¯±Í
+	//2.ºÏ≤È◊¯±Í¥¶ «≤ª «¿◊
+	//  a. «¿◊°™°™∫‹“≈∫∂game over
+	//  b.≤ª «¿◊°™°™Õ≥º∆◊¯±Í÷‹Œß”–º∏∏ˆ¿◊£¨’π æ ˝ƒøµΩshow£¨”Œœ∑ºÃ–¯
+	int x = 0, y = 0, i = 0, j = 0, win = 0;
+	while (win < row * col - N) {
+		printf("«Î ‰»Î≈≈≤È◊¯±Í£∫>");
+		scanf("%d%d", &x, &y);		//x»°1µΩ9£¨y»°1µΩ9
+		//≈–∂œ◊¯±Í «∑Ò∫œ∑®
+		if (x >= 1 && x <= row && y >= 1 && y <= col) {
+			if (mine[x][y] == '1') {		// «¿◊
+				printf("game over!\n");
+				Displayboard(mine, row, col);
+				break;
+			}
+			else {		//≤ª «¿◊
+				int count = get_mine_count(mine, x, y);
+				show[x][y] = count + '0';		//’‚—˘æÕ «“ª∏ˆ◊÷∑˚
+				//œ‘ æ≈≈≤È≥ˆµƒ–≈œ¢
+				Displayboard(show, ROW, COL);
+				//≈–∂œ¿◊ «∑Ò≈≈≤ÈÕÍ
+				win++;
+			}
+		}
+		else {
+			printf("◊¯±Í≤ª∫œ∑®£¨«Î÷ÿ–¬ ‰»Î£°\n");
+		}
+	}
+	if (win == row * col - N) {		//“ª÷±µΩ”Œœ∑Ω· ¯∂º√ª”–≤»¿◊
+		printf("”Œœ∑ §¿˚\n");
+	}
 }
