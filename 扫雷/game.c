@@ -68,6 +68,20 @@ static int get_mine_count(char mine[ROWS][COLS], int x, int y) {		//统计周围雷的
 //		mine[x + 1][y + 1] - 8 * '0';
 //}
 
+int Judgemine(char mine[ROWS][COLS], char show[ROWS][COLS], int x, int y, int win) {		//判断周围8子可不可以清
+	int  count = get_mine_count(mine, x, y);
+	if (count == 0) {		//周围没有雷
+		show[x][y] = '0';
+		Judgemine(mine, show, x, y + 1, win);
+	}
+	else {		//周围有雷
+		show[x][y] = count + '0';
+		win++;
+	}
+	return win;
+}
+
+
 void Findmine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col) {		//排查雷
 	//1.输入排查的坐标
 	//2.检查坐标处是不是雷
@@ -84,13 +98,17 @@ void Findmine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col) {	
 				Displayboard(mine, row, col);
 				break;
 			}
-			else {		//不是雷
-				int count = get_mine_count(mine, x, y);
-				show[x][y] = count + '0';		//这样就是一个字符
-				//显示排查出的信息
+			//else {		//不是雷
+			//	int count = get_mine_count(mine, x, y);
+			//	show[x][y] = count + '0';		//这样就是一个字符
+			//	//显示排查出的信息
+			//	Displayboard(show, ROW, COL);
+			//	//判断雷是否排查完
+			//	win++;
+			//}
+			else {		//不是雷，判断周围可不可以清
+				win = Judgemine(mine, show, x, y, win);
 				Displayboard(show, ROW, COL);
-				//判断雷是否排查完
-				win++;
 			}
 		}
 		else {
