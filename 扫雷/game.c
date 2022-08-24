@@ -45,39 +45,46 @@ void Setmine(char mine[ROWS][COLS], int row, int col) {		//布置雷
 //1.修饰局部变量
 //2.修饰全局变量
 //3.修饰函数，只能在此源文件使用
-static int get_mine_count(char mine[ROWS][COLS], int x, int y) {		//统计周围雷的个数
-	int count = 0, i = 0, j = 0;
-	for (i = x - 1; i < x + 2; i++) {
-		for (j = y - 1; j < y + 2; j++) {
-			if (mine[i][j] == '1') {
-				count++;		//自己本身不是雷，count不变
-			}
-		}
-	}
-	return count;
-}
-
-//int get_mine_count(char mine[ROWS][COLS], int x, int y) {
-//	return mine[x - 1][y - 1] +
-//		mine[x - 1][y] +
-//		mine[x - 1][y + 1] +
-//		mine[x][y - 1] +
-//		mine[x][y + 1] +
-//		mine[x + 1][y - 1] +
-//		mine[x + 1][y] +
-//		mine[x + 1][y + 1] - 8 * '0';
+//static int get_mine_count(char mine[ROWS][COLS], int x, int y) {		//统计周围雷的个数
+//	int count = 0, i = 0, j = 0;
+//	for (i = x - 1; i < x + 2; i++) {
+//		for (j = y - 1; j < y + 2; j++) {
+//			if (mine[i][j] == '1') {
+//				count++;		//自己本身不是雷，count不变
+//			}
+//		}
+//	}
+//	return count;
 //}
 
-int Judgemine(char mine[ROWS][COLS], char show[ROWS][COLS], int x, int y, int win) {		//判断周围8子可不可以清
-	int  count = get_mine_count(mine, x, y);
-	if (count == 0) {		//周围没有雷
-		show[x][y] = '0';
-		Judgemine(mine, show, x, y + 1, win);
+static int get_mine_count(char mine[ROWS][COLS], int x, int y) {
+	return mine[x - 1][y - 1] +
+		mine[x - 1][y] +
+		mine[x - 1][y + 1] +
+		mine[x][y - 1] +
+		mine[x][y + 1] +
+		mine[x + 1][y - 1] +
+		mine[x + 1][y] +
+		mine[x + 1][y + 1] - 8 * '0';
+}
+
+int Judgemine(char mine[ROWS][COLS], char show[ROWS][COLS], int x, int y, int win) {		//判断周围4子可不可以清
+	if (x >= 1 && x <= ROW && y >= 1 && y <= COL) {
+		int  count = get_mine_count(mine, x, y);
+		if (count == 0) {		//周围没有雷
+			show[x][y] = '0';
+			win++;
+			Judgemine(mine, show, x - 1, y, win);
+			Judgemine(mine, show, x, y - 1, win);
+			Judgemine(mine, show, x, y + 1, win);
+			Judgemine(mine, show, x + 1, y, win);
+		}
+		else {		//周围有雷
+			show[x][y] = count + '0';
+			win++;
+		}
 	}
-	else {		//周围有雷
-		show[x][y] = count + '0';
-		win++;
-	}
+
 	return win;
 }
 
@@ -92,7 +99,7 @@ void Findmine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col) {	
 		printf("请输入排查坐标：>");
 		scanf("%d%d", &x, &y);		//x取1到9，y取1到9
 		//判断坐标是否合法
-		if (x >= 1 && x <= row && y >= 1 && y <= col) {
+		if (x >= 1 && x <= row && y >= 1 && y <= col && show[x][y] == '*') {
 			if (mine[x][y] == '1') {		//是雷
 				printf("game over!\n");
 				Displayboard(mine, row, col);
