@@ -68,9 +68,33 @@ int main() {
 	////等价
 	////a += 100;
 
-	//单目操作符
-	int flag = 5;
-	printf("!flag=%d\n", !flag);
+	////单目操作符
+	////int flag = 5;
+	////printf("!flag=%d\n", !flag);
+	//int a = 10;
+	//printf("sizeof(a)=%d\n", sizeof(a));
+	////printf("sizeof(a)=%d\n", sizeof a);		//省略括号证明sizeof是操作符而不是函数
+	//printf("sizeof(int)=%d\n", sizeof(int));
+	//int arr[10] = { 0 };
+	//printf("sizeof(arr)=%d\n", sizeof(arr));
+	//printf("sizeof(int[10])=%d\n", sizeof(int[10]));		//说明int[10]是数组类型
+	//short s = 5;
+	//int b = 10;
+	//printf("%d\n", sizeof(s = b + 2));		//s的空间就是short——2字节
+	//printf("s=%d\n", s);		//sizeof括号中放的表达式不参与运算
+	//int c = -1;
+	////10000000 00000000 00000000 00000001
+	////11111111 11111111 11111111 11111111——补码
+	//int d = ~c;
+	////00000000 00000000 00000000 00000000
+	//printf("%d\n", d);
+	//int a = 10;
+	//int b = a++;    //后置++：直接使用，后++
+	//printf("%d\n", b);	//10
+	//printf("%d\n", a);	//11
+	int g = 10;
+	printf("%d\n", g--);	//10，先使用后减
+	printf("%d\n", g);		//9
 
 	return 0;
 }
