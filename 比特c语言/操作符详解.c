@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
-int main() {
+//int main() {
 	//算数操作符
 	////整数除法得到商(整数)
 	//printf("3/5=%d\n", 3 / 5);
@@ -78,23 +78,75 @@ int main() {
 	//int arr[10] = { 0 };
 	//printf("sizeof(arr)=%d\n", sizeof(arr));
 	//printf("sizeof(int[10])=%d\n", sizeof(int[10]));		//说明int[10]是数组类型
+	
 	//short s = 5;
 	//int b = 10;
 	//printf("%d\n", sizeof(s = b + 2));		//s的空间就是short——2字节
 	//printf("s=%d\n", s);		//sizeof括号中放的表达式不参与运算
+	
 	//int c = -1;
 	////10000000 00000000 00000000 00000001
 	////11111111 11111111 11111111 11111111——补码
 	//int d = ~c;
 	////00000000 00000000 00000000 00000000
 	//printf("%d\n", d);
+	
 	//int a = 10;
 	//int b = a++;    //后置++：直接使用，后++
 	//printf("%d\n", b);	//10
 	//printf("%d\n", a);	//11
-	int g = 10;
-	printf("%d\n", g--);	//10，先使用后减
-	printf("%d\n", g);		//9
+	//int g = 10;
+	//printf("%d\n", g--);	//10，先使用后减
+	//printf("%d\n", g);		//9
 
+	//int x = 10;
+	//printf("%p\n", &x);		//取地址操作符
+	//int* pa = &x;				//pa是用来存放地址的——就是一个指针变量
+	//*pa = 20;					//*为解引用操作符——间接访问操作符
+	//printf("%d\n", x);		//20
+
+	//强制类型转换
+	//int h = 3.14;			//warning
+	//int h = (int)3.14;
+
+	//return 0;
+//}
+
+
+//关系操作符
+//int main() {
+//	int a = 3, b = 5;
+//	//if (a == b)		//注意：=为赋值	==判断相等
+//	//if (a != b) 
+//	if (a < b) {
+//
+//	}
+//	return 0;
+//}
+//比较两个字符串不能使用==
+
+
+//逻辑操作符
+//int main() {
+//	int a = 3, b = 0;
+//	if (a && b) {
+//		//a和b同时为真
+//	}
+//	if (a || b) {
+//		//a或b为真
+//	}
+//	return 0;
+//}
+// 
+//区分逻辑与	按位与
+//1 & 2-- > 0
+//1 && 2-- > 1
+//区分逻辑或	按位或
+//1 | 2-- > 3
+//1 || 2-- > 1
+int main() {
+	int i = 0, a = 0, b = 2, c = 3, d = 4;
+	i = a++ && ++b && d++;
+	printf("a=%d b=%d c=%d d=%d\n", a, b, c, d);
 	return 0;
 }
