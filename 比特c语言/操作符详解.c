@@ -187,6 +187,49 @@
 
 
 //函数调用操作符
-int main() {
+//函数的定义
+//int Add(int x, int y) {
+//	return x + y;
+//}
+//void test() {
+//	
+//}
+//int main() {
+//	int a = 10, b = 20;
+//	int ret = Add(a, b);		//()——函数调用操作符
+//	test();
+//	return 0;
+//}
 
-}
+
+//结构成员访问操作符
+//书：书名，书号，出版社，作者，定价
+//创建一个自定义的类型
+//struct Book {
+//	//结构体的成员(变量)
+//	char name[20];
+//	char id[20];
+//	int price;
+//};
+//int main() {
+//	struct Book b = { "C语言","20220901",55 };
+//	struct Book* pb = &b;
+//	//结构体指针->成员名
+//	printf("书名：%s\n", pb->name);
+//	printf("书号：%s\n", pb->id);
+//	printf("定价：%d\n", pb->price);
+//
+//	//printf("书名：%s\n", (*pb).name);
+//	//printf("书号：%s\n", (*pb).id);
+//	//printf("定价：%d\n", (*pb).price);
+//	//结构体变量名.成员名
+//	//printf("书名：%s\n", b.name);
+//	//printf("书号：%s\n", b.id);
+//	//printf("定价：%d\n", b.price);
+//	return 0;
+//}
+
+
+//表达式求值
+char a, b, c;
+a = b + c;
