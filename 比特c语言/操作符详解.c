@@ -263,10 +263,19 @@
 //	}
 //	return 0;
 //}
-int main() {
-	char c = 1;
-	printf("%u\n", sizeof(c));	//1
-	printf("%u\n", sizeof(+c));	//4
-	printf("%u\n", sizeof(-c));	//4
-	return 0;
-}
+//int main() {
+//	char c = 1;
+//	printf("%u\n", sizeof(c));	//1
+//	printf("%u\n", sizeof(+c));	//4
+//	printf("%u\n", sizeof(-c));	//4
+//	return 0;
+//}
+
+
+//ËãÊõ×ª»»
+//int main() {
+//	int a = 4;
+//	float f = 4.5f;
+//	a + f;
+//	return 0;
+//}
