@@ -50,3 +50,34 @@
 //	return 0;
 //}//假设a的地址为0x0012ff40，在退出test函数时该空间就被释放了
 ////如果强行给0x0012ff40空间赋值，则报错
+
+
+//指针加减整数
+//#define VALUES 5
+//int main() {
+//	float values[VALUES];
+//	float* vp;
+//	for (vp = &values[0]; vp < &values[VALUES];) {
+//		*vp++ = 0;
+//	}
+//	return 0;
+//}
+
+//指针-指针
+//int main() {
+//	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//	printf("%d\n", &arr[9] - &arr[0]);
+//	//指针-指针得到两个指针之间元素个数
+//	//指针-指针的前提：两个指针指向同一个空间
+//	return 0;
+//}
+//实例：求字符串长度
+//int my_strlen(char* str) {
+//	char* start = str;
+//	while (*str != '\0') {
+//		str++;
+//	}
+//	return str - start;
+//}
+
+//指针的关系运算
