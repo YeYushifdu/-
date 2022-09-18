@@ -81,3 +81,24 @@
 //}
 
 //指针的关系运算
+//int main() {
+//	for (vp = &values[VALUES]; vp > &values[0];) {
+//		*--vp = 0;
+//	}
+//	return 0;
+//}
+////简化
+//int main() {
+//	for (vp = &values[VALUES-1]; vp >= &values[0]; vp--) {
+//		*vp = 0;
+//	}
+//	return 0;
+//}
+
+//指针和数组
+int main() {
+	int arr[10] = { 0 };
+	printf("%p\n", arr);
+	printf("%p\n", &arr[0]);
+	return 0;
+}
