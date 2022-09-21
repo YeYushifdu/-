@@ -96,9 +96,26 @@
 //}
 
 //指针和数组
+//int main() {
+//	int arr[10] = { 0 };
+//	printf("%p\n", arr);
+//	printf("%p\n", &arr[0]);
+//	return 0;
+//}
+
+//二级指针
+//int main() {
+//	int a = 10;
+//	int* pa = &a;		//pa是指针变量，一级指针
+//	int** ppa = &pa;	//pa也是变量，&pa取出pa在内存中起始地址
+//	//ppa就是二级指针变量
+//	return 0;
+//}
+
+//指针数组
 int main() {
-	int arr[10] = { 0 };
-	printf("%p\n", arr);
-	printf("%p\n", &arr[0]);
+	int arr[10];		//整型数组--存放整型的数组
+	char ch[5];			//字符数组--存放字符的数组
+	int* parr[5];		//整形指针的数组
 	return 0;
 }
