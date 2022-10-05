@@ -14,16 +14,27 @@
 //	return 0;
 //}
 
+//int main() {
+//	char str1[] = "hello";
+//	char str2[] = "hello";
+//	char* str3 = "hello";
+//	char* str4 = "hello";
+//	if (str1 == str2) {
+//		printf("str1 and str2 are same.\n");
+//	}
+//	if (str3 == str4) {
+//		printf("str3 and str4 are same.\n");
+//	}
+//	return 0;
+//}
+
+//Ö¸ÕëÊı×é
 int main() {
-	char str1[] = "hello";
-	char str2[] = "hello";
-	char* str3 = "hello";
-	char* str4 = "hello";
-	if (str1 == str2) {
-		printf("str1 and str2 are same.\n");
-	}
-	if (str3 == str4) {
-		printf("str3 and str4 are same.\n");
+	int a = 10, b = 20, c = 30;
+	int* arr[3] = { &a,&b,&c };
+	int i = 0;
+	for (i = 0; i < 3; i++) {
+		printf("%d ", *(arr[i]));
 	}
 	return 0;
 }
