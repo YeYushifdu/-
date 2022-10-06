@@ -28,13 +28,30 @@
 //	return 0;
 //}
 
-//指针数组
+////指针数组
+//int main() {
+//	int a = 10, b = 20, c = 30;
+//	int* arr[3] = { &a,&b,&c };
+//	int i = 0;
+//	for (i = 0; i < 3; i++) {
+//		printf("%d ", *(arr[i]));
+//	}
+//	return 0;
+//}
+
 int main() {
-	int a = 10, b = 20, c = 30;
-	int* arr[3] = { &a,&b,&c };
+	int a[5] = { 1,2,3,4,5 };
+	int b[] = { 2,3,4,5,6 };
+	int c[] = { 3,4,5,6,7 };
+	int* arr[3] = { a,b,c };
 	int i = 0;
 	for (i = 0; i < 3; i++) {
-		printf("%d ", *(arr[i]));
+		int j = 0;
+		for (j = 0; j < 5; j++) {
+			//printf("%d ", *(arr[i] + j));
+			printf("%d ", arr[i][j]);
+		}
+		printf("\n");
 	}
 	return 0;
 }
