@@ -81,28 +81,59 @@
 //	return 0;
 //}
 
-//常用于二维数组
-void print1(int arr[3][5], int r, int c) {
-	int i = 0, j = 0;
-	for (i = 0; i < r; i++) {
-		for (j = 0; j < c; j++) {
-			printf("%d ", arr[i][j]);
-		}
-		printf("\n");
-	}
-}
-void print2(int(*p)[5], int r, int c) {	//p是一个一维数组指针
-	int i = 0, j = 0;
-	for (i = 0; i < r; i++) {
-		for (j = 0; j < c; j++) {
-			printf("%d ", *(*(p + i) + j));
-		}
-		printf("\n");
-	}
-}
+////常用于二维数组
+//void print1(int arr[3][5], int r, int c) {
+//	int i = 0, j = 0;
+//	for (i = 0; i < r; i++) {
+//		for (j = 0; j < c; j++) {
+//			printf("%d ", arr[i][j]);
+//		}
+//		printf("\n");
+//	}
+//}
+//void print2(int(*p)[5], int r, int c) {	//p是一个一维数组指针
+//	int i = 0, j = 0;
+//	for (i = 0; i < r; i++) {
+//		for (j = 0; j < c; j++) {
+//			printf("%d ", *(*(p + i) + j));
+//		}
+//		printf("\n");
+//	}
+//}
+//int main() {
+//	int arr[3][5] = { {1,2,3,4,5},{2,3,4,5,6},{3,4,5,6,7} };
+//	//print1(arr, 3, 5);
+//	print2(arr, 3, 5);					//arr表示首元素，即第一行的地址
+//	return 0;
+//}
+
+//一维数组传参
+//void test(int arr[]) {}
+//void test(int arr[10]) {}
+//void test(int* arr) {}
+//void test2(int* arr[20]) {}
+//void test2(int** arr) {}
+//int main() {
+//	int arr[10] = { 0 };
+//	int* arr2[20] = { 0 };		//整型指针数组
+//	test(arr);
+//	test(arr2);
+//	return 0;
+//}
+
+//二维数组传参
+void test(int arr[3][5]) {}
+void test(int arr[][]) {}
+void test(int arr[][5]) {}
+
+void test(int* arr) {}			//第一行的地址，不能用int指针接收,error
+void test(int* arr[5]) {}		//不能用数组接收,error
+void test(int(*arr)[5]) {}		//指向5个int元素的指针,right
+void test(int** arr) {}			//不能用二级指针接收,error
 int main() {
-	int arr[3][5] = { {1,2,3,4,5},{2,3,4,5,6},{3,4,5,6,7} };
-	//print1(arr, 3, 5);
-	print2(arr, 3, 5);					//arr表示首元素，即第一行的地址
+	int arr[10] = { 0 };
+	int* arr2[20] = { 0 };		//整型指针数组
+	test(arr);
+	test(arr2);
 	return 0;
 }
