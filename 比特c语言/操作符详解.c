@@ -279,3 +279,16 @@
 //	a + f;
 //	return 0;
 //}
+
+int i;							//i是全局变量，不初始化，默认是0
+int main() {
+	i--;						//-1
+	//sizeof操作符算出的结果类型是unsigned int
+	if (i > sizeof(i)) {		//i=-1的补码32个1被看作无符号数，是一个超级大的数，大于4
+		printf(">\n");
+	}
+	else {
+		printf("<\n");
+	}
+	return 0;
+}
