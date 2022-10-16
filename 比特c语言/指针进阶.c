@@ -122,18 +122,49 @@
 //}
 
 //二维数组传参
-void test(int arr[3][5]) {}
-void test(int arr[][]) {}
-void test(int arr[][5]) {}
+//void test(int arr[3][5]) {}
+//void test(int arr[][]) {}
+//void test(int arr[][5]) {}
+//
+//void test(int* arr) {}			//第一行的地址，不能用int指针接收,error
+//void test(int* arr[5]) {}		//不能用数组接收,error
+//void test(int(*arr)[5]) {}		//指向5个int元素的指针,right
+//void test(int** arr) {}			//不能用二级指针接收,error
+//int main() {
+//	int arr[10] = { 0 };
+//	int* arr2[20] = { 0 };		//整型指针数组
+//	test(arr);
+//	test(arr2);
+//	return 0;
+//}
 
-void test(int* arr) {}			//第一行的地址，不能用int指针接收,error
-void test(int* arr[5]) {}		//不能用数组接收,error
-void test(int(*arr)[5]) {}		//指向5个int元素的指针,right
-void test(int** arr) {}			//不能用二级指针接收,error
+//一级指针传参
+//void print(int* ptr, int sz) {
+//	int i = 0;
+//	for (i = 0; i < sz; i++) {
+//		printf("%d ", *(ptr + i));
+//	}
+//}
+//
+//int main() {
+//	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int* p = arr;
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	//p是一级指针
+//	print(p, sz);
+//	return 0;
+//}
+
+//二级指针传参
+void test(int** p2) {
+	**p2 = 20;
+}
 int main() {
-	int arr[10] = { 0 };
-	int* arr2[20] = { 0 };		//整型指针数组
-	test(arr);
-	test(arr2);
+	int a = 10;
+	int* pa = &a;		//pa是一级指针
+	int** ppa = &pa;	//ppa是二级指针
+	test(ppa);
+	//test(&pa);			//传一级指针的地址也没问题
+	printf("%d\n", a);
 	return 0;
 }
