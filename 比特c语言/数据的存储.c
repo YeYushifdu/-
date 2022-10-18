@@ -53,23 +53,32 @@
 //	return 0;
 //}
 
-int main() {
-	unsigned int i;
-	for (i = 9; i >= 0; i--) {
-		printf("&u\n", i);
-	}
-	return 0;
-}
+//int main() {
+//	unsigned int i;
+//	for (i = 9; i >= 0; i--) {
+//		printf("&u\n", i);
+//	}
+//	return 0;
+//}
 
-int main() {
-	char a[1000];
-	int i;
-	for (i = 0; i < 1000; i++) {
-		a[i] = -1 - i;
-	}
-	printf("%d", strlen(a));
-	return 0;
-}
+//int main() {
+//	char a[1000];
+//	int i;
+//	for (i = 0; i < 1000; i++) {
+//		a[i] = -1 - i;
+//	}
+//	//-1 -2 -3...-127 -128 127 126...3 2 1 0 -1 -2...
+//	printf("%d", strlen(a));//找到\0-->0，共255个数
+//	return 0;
+//}
+
+//int main() {
+//	unsigned char i = 0;
+//	for (i = 0; i <= 255; i++) {
+//		printf("hello\n");
+//	}
+//	return 0;
+//}
 
 //判断是大端法还是小端法
 //int main() {
@@ -84,3 +93,26 @@ int main() {
 //	}
 //	return 0;
 //}
+
+//杨辉三角
+int main() {
+	int arr[10][10] = { 0 };
+	int i = 0, j = 0;
+	for (i = 0; i < 10; i++) {
+		for (j = 0; j <= i; j++) {
+			if (j == 0) {
+				arr[i][j] = 1;
+			}
+			if (i >= 1 && j >= 1) {
+				arr[i][j] = arr[i - 1][j - 1] + arr[i - 1][j];
+			}
+		}
+	}
+	for (i = 0; i < 10; i++) {
+		for (j = 0; j <= i; j++) {
+			printf("%d ", arr[i][j]);
+		}
+		printf("\n");
+	}
+	return 0;
+}
