@@ -156,15 +156,37 @@
 //}
 
 //二级指针传参
-void test(int** p2) {
-	**p2 = 20;
+//void test(int** p2) {
+//	**p2 = 20;
+//}
+//int main() {
+//	int a = 10;
+//	int* pa = &a;		//pa是一级指针
+//	int** ppa = &pa;	//ppa是二级指针
+//	test(ppa);
+//	//test(&pa);			//传一级指针的地址也没问题
+//	printf("%d\n", a);
+//	return 0;
+//}
+
+//函数指针
+int Add(int x, int y) {
+	return x + y;
 }
+
+//int main() {
+//	//函数指针——存放函数地址的指针
+//	//pf就是一个函数指针变量
+//	int(*pf)(int, int) = &Add;
+//	printf("%p\n", &Add);
+//	printf("%p\n", Add);
+//	return 0;
+//}
+
 int main() {
-	int a = 10;
-	int* pa = &a;		//pa是一级指针
-	int** ppa = &pa;	//ppa是二级指针
-	test(ppa);
-	//test(&pa);			//传一级指针的地址也没问题
-	printf("%d\n", a);
+	//pf就是一个函数指针变量
+	int(*pf)(int, int) = &Add;
+	int ret = (*pf)(3, 5);
+	printf("%d\n", ret);
 	return 0;
 }
