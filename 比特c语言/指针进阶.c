@@ -190,3 +190,13 @@ int main() {
 	printf("%d\n", ret);
 	return 0;
 }
+
+(*(void(*)())0)();
+//()0——将0强制类型转换
+//(void(*)())0——将0强制类型转换成一个函数的地址
+// *(void(*)())0——对0地址解引用
+// (*(void(*)())0)()——调用0地址处的函数，该函数无参，返回值是void
+
+void (*signal(int, void(*)(int)))(int);
+//signal是函数名，void(*)(int)是一个函数指针,参数为int，返回void，signal函数参数为一个整型和一个函数指针类型
+//void(*)(int)，说明signal函数的返回类型是函数指针，指向参数为int，返回void的函数
