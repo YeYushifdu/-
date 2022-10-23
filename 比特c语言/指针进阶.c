@@ -217,45 +217,111 @@
 //}
 
 //计算器-计算整型变量的加减乘除
-int Add(int x, int y) {
-	return x + y;
-}
-int Sub(int x, int y) {
-	return x - y;
-}
-int Mul(int x, int y) {
-	return x * y;
-}
-int Div(int x, int y) {
-	return x / y;
-}
-void menu() {
-	printf("************************************\n");
-	printf("***1.Add 2.Sub 3.Mul 4.Div 0.exit***\n");
-	printf("************************************\n");
-}
-int main() {
-	int input = 0;
-	do {
-		menu();
-		//pfArr就是函数指针数组
-		int(*pfArr[5])(int, int) = { NULL,Add,Sub,Mul,Div };
-		int x = 0, y = 0, ret = 0;
-		printf("请选择:>");
-		scanf("%d", &input);
-		if (input >= 1 && input <= 4) {
-			printf("请输入两个数:>");
-			scanf("%d %d", &x, &y);
-			ret = (pfArr[input])(x, y);
-			printf("ret=%d\n", ret);
-		}
-		else if (input == 0) {
-			printf("退出程序\n");
-			break;
-		}
-		else {
-			printf("选择错误\n");
-		}
-	} while (input);
-	return 0;
-}
+//int Add(int x, int y) {
+//	return x + y;
+//}
+//int Sub(int x, int y) {
+//	return x - y;
+//}
+//int Mul(int x, int y) {
+//	return x * y;
+//}
+//int Div(int x, int y) {
+//	return x / y;
+//}
+//void menu() {
+//	printf("************************************\n");
+//	printf("***1.Add 2.Sub 3.Mul 4.Div 0.exit***\n");
+//	printf("************************************\n");
+//}
+//int main() {
+//	int input = 0;
+//	do {
+//		menu();
+//		//pfArr就是函数指针数组
+//		int(*pfArr[5])(int, int) = { NULL,Add,Sub,Mul,Div };
+//		int x = 0, y = 0, ret = 0;
+//		printf("请选择:>");
+//		scanf("%d", &input);
+//		if (input >= 1 && input <= 4) {
+//			printf("请输入两个数:>");
+//			scanf("%d %d", &x, &y);
+//			ret = (pfArr[input])(x, y);
+//			printf("ret=%d\n", ret);
+//		}
+//		else if (input == 0) {
+//			printf("退出程序\n");
+//			break;
+//		}
+//		else {
+//			printf("选择错误\n");
+//		}
+//	} while (input);
+//	return 0;
+//}
+
+//函数指针数组的地址
+//int* (*p2)[5] = &arr;
+////p2是指向整型指针数组的指针
+//int(*p)(int, int);		//函数指针
+//int(*p2[4])(int, int);	//函数指针的数组
+//p3 = &p2;					//取出函数指针数组的地址
+//p3就是指向函数指针数组的指针
+
+//计算器
+//int Add(int x, int y) {
+//	return x + y;
+//}
+//int Sub(int x, int y) {
+//	return x - y;
+//}
+//int Mul(int x, int y) {
+//	return x * y;
+//}
+//int Div(int x, int y) {
+//	return x / y;
+//}
+//void menu() {
+//	printf("************************************\n");
+//	printf("***1.Add 2.Sub 3.Mul 4.Div 0.exit***\n");
+//	printf("************************************\n");
+//}
+//int Calc(int(*pf)(int, int)) {
+//	int x = 0, y = 0;
+//	printf("请输入两个数:>");
+//	scanf("%d %d", &x, &y);
+//	return pf(x, y);
+//}
+//int main() {
+//	int input = 0;
+//	do {
+//		menu();
+//		int x = 0, y = 0, ret = 0;
+//		printf("请选择:>");
+//		scanf("%d", &input);
+//		switch (input) {
+//		case 1:
+//			ret = Calc(Add);
+//			printf("ret=%d\n", ret);
+//			break;
+//		case 2:
+//			ret = Calc(Sub);
+//			printf("ret=%d\n", ret);
+//			break;
+//		case 3:
+//			ret = Calc(Mul);
+//			printf("ret=%d\n", ret);
+//			break;
+//		case 4:
+//			ret = Calc(Div);
+//			printf("ret=%d\n", ret);
+//			break;
+//		case 0:
+//			printf("退出程序\n");
+//			break;
+//		default:
+//			printf("请重新选择\n");
+//		}
+//	} while (input);
+//	return 0;
+//}
