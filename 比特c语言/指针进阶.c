@@ -357,11 +357,11 @@
 
 
 //快速排序
-void qsort(void* base,				//base中存放待排序数据中第一个对象地地址
-	size_t num,						//排序数据元素的个数
-	size_t size,					//排序数据中一个元素的大小，单位是字节
-	int(*cmp)(const void*, const void*)	//比较待排序数据中两个元素的函数
-);
+//void qsort(void* base,				//base中存放待排序数据中第一个对象的地址
+//	size_t num,						//排序数据元素的个数
+//	size_t size,					//排序数据中一个元素的大小，单位是字节
+//	int(*cmp)(const void*, const void*)	//比较待排序数据中两个元素的函数
+//);
 int cmp_int(const void* e1, const void* e2) {
 	return (*(int*)e1 - *(int*)e2);
 }
@@ -372,10 +372,79 @@ void print_arr(int arr[], int sz) {
 	}
 	printf("\n");
 }
-int main() {						//升序
+void test1() {
+	//整型数据的排序
 	int arr[10] = { 9,8,7,6,5,4,3,2,1,0 };
 	int sz = sizeof(arr) / sizeof(arr[0]);
 	qsort(arr, sz, sizeof(arr[0]), cmp_int);
 	print_arr(arr, sz);
+}
+struct Stu {
+	char name[20];
+	int age;
+};
+int sort_by_age(const void* e1, const void* e2) {
+	return ((struct Stu*)e1)->age - ((struct Stu*)e2)->age;	//强制类型转换
+}
+int sort_by_name(const void* e1, const void* e2) {
+	//return ((struct Stu*)e1)->name - ((struct Stu*)e2)->name;
+	return strcmp(((struct Stu*)e1)->name, ((struct Stu*)e2)->name);
+}
+void test2() {
+	//结构体数据的排序
+	struct Stu s[] = { {"zhangsan",30},{"lisi",34},{"wangwu",20} };
+	int sz = sizeof(s) / sizeof(s[0]);
+	//按照年龄排序
+	qsort(s, sz, sizeof(s[0]), sort_by_age);
+	//按照姓名字母排序
+	qsort(s, sz, sizeof(s[0]), sort_by_name);
+}
+//模仿qsort函数实现冒泡排序
+void Swap(char* buf1, char* buf2, int width) {
+	int i = 0;
+	for (i = 0; i < width; i++) {
+		char tmp = *buf1;
+		*buf1 = *buf2;
+		*buf2 = tmp;
+		buf1++;
+		buf2++;
+	}
+}
+void bubble_sort(void* base,
+	int sz,
+	int width,
+	int(*cmp)(const void* e1, const void* e2)) {	//const只比较不交换
+	int i = 0;
+	for (i = 0; i < sz - 1; i++) {	//趟数
+		int j = 0;
+		for (j = 0; j < sz - 1; j++) {	//一趟的排序
+			//两个元素比较(可能是各种元素类型)
+			if (cmp((char*)base + j * width, (char*)base + (j + 1) * width) > 0) {
+				Swap((char*)base + j * width, (char*)base + (j + 1) * width, width);
+			}
+		}
+	}
+}
+
+void test3() {
+	int arr[] = { 1,3,5,7,9,2,4,6,8,0 };
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	bubble_sort(arr, sz, sizeof(arr[0]), cmp_int);
+	print_arr(arr, sz);
+}
+void test4() {
+	//结构体数据的排序
+	struct Stu s[] = { {"zhangsan",30},{"lisi",34},{"wangwu",20} };
+	int sz = sizeof(s) / sizeof(s[0]);
+	//按照年龄排序
+	bubble_sort(s, sz, sizeof(s[0]), sort_by_age);
+	//按照姓名字母排序
+	//bubble_sort(s, sz, sizeof(s[0]), sort_by_name);
+}
+int main() {						//升序
+	//test1();
+	//test2();
+	//test3();
+	test4();
 	return 0;
 }
