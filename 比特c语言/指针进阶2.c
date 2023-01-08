@@ -60,15 +60,30 @@ int main() {
 	//printf("%d\n", sizeof(&p + 1));	//地址的大小
 	//printf("%d\n", sizeof(&p[0] + 1));//第二个元素地址的大小
 
-	char* p = "abcdef";
-	printf("%d\n", strlen(p));		//数组长度，6
-	printf("%d\n", strlen(p + 1));	//5
-	printf("%d\n", strlen(*p));		//第一个元素（ASCII码），出错
-	printf("%d\n", strlen(p[0]));	//同上
-	printf("%d\n", strlen(&p));		//从p的位置开始找'\0'，随机值
-	printf("%d\n", strlen(&p + 1));	//从p的位置加4（或8）开始找'\0'，随机值
-	printf("%d\n", strlen(&p[0] + 1));//5
+	//char* p = "abcdef";
+	//printf("%d\n", strlen(p));		//数组长度，6
+	//printf("%d\n", strlen(p + 1));	//5
+	//printf("%d\n", strlen(*p));		//第一个元素（ASCII码），出错
+	//printf("%d\n", strlen(p[0]));	//同上
+	//printf("%d\n", strlen(&p));		//从p的位置开始找'\0'，随机值
+	//printf("%d\n", strlen(&p + 1));	//从p的位置加4（或8）开始找'\0'，随机值
+	//printf("%d\n", strlen(&p[0] + 1));//5
+
 	//二维数组
+	int a[3][4] = { 0 };
+	printf("%d\n", sizeof(a));				//3*4*sizeof(int)=48
+	printf("%d\n", sizeof(a[0][0]));		//第一行第一个元素的地址，4
+	printf("%d\n", sizeof(a[0]));			//a[0]表示整个第一行，计算第一行的大小4*sizeof(int)=16
+	printf("%d\n", sizeof(a[0] + 1));		//a[0]表示第一行第一个元素的地址，a[0]+1表示第二个元素的地址，计算地址的大小
+	printf("%d\n", sizeof(*(a[0] + 1)));	//计算第一行第二个元素（整型）的大小
+	printf("%d\n", sizeof(a + 1));			//a是二维数组的数组名，表示二维数组首元素的地址，即第一行的地址，a+1表示第二行地址的大小
+	printf("%d\n", sizeof(*(a + 1)));		//取地址再解引用，计算第二行的大小
+	printf("%d\n", sizeof(&a[0] + 1));		//第二行的地址的大小
+	printf("%d\n", sizeof(*(&a[0] + 1)));	//第二行的大小
+	printf("%d\n", sizeof(*a));				//第一行的大小
+	printf("%d\n", sizeof(a[3]));			//一行的大小，sizeof()内部是不计算的，只根据类型计算大小
+	//sizeof()内部表达式不参与运算，只看该类型大小
+
 
 	return 0;
 }
