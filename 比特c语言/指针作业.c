@@ -80,29 +80,95 @@
 //1.左边逆序
 //2.右边逆序
 //3.整体逆序
-#include<assert.h>
-void reverse(char* left, char* right) {	//逆序
-	assert(left);
-	assert(right);
-	while (left < right) {
-		char tmp = *left;
-		*left = *right;
-		*right = tmp;
-		left++;
-		right--;
-	}
-}
+//#include<assert.h>
+//void reverse(char* left, char* right) {	//逆序
+//	assert(left);
+//	assert(right);
+//	while (left < right) {
+//		char tmp = *left;
+//		*left = *right;
+//		*right = tmp;
+//		left++;
+//		right--;
+//	}
+//}
+//
+//void string_left_rotate(char* str, int k) {
+//	int n = strlen(str);
+//	reverse(str, str + k - 1);
+//	reverse(str + k, str + n - 1);
+//	reverse(str, str + n - 1);
+//}
+//int main() {
+//	char arr[10] = "ABCDEF";
+//	int k = 2;
+//	string_left_rotate(arr, k);
+//	printf("%s\n", arr);
+//	return 0;
+//}
 
-void string_left_rotate(char* str, int k) {
-	int n = strlen(str);
-	reverse(str, str + k - 1);
-	reverse(str + k, str + n - 1);
-	reverse(str, str + n - 1);
+//字符串旋转结果
+//int is_string_rotate(char* str1, char* str2) {
+//	int i = 0;
+//	int n = strlen(str1);
+//	for (i = 0; i < n; i++) {
+//		//每次左旋一个字符
+//		char tmp = *str1;
+//		//后面n-1个字符向前移动
+//		int j = 0;
+//		for (j = 0; j < n - 1; j++) {
+//			*(str1 + j) = *(str1 + j + 1);
+//		}
+//		//tmp放在最后
+//		*(str1 + n - 1) = tmp;
+//		if (strcmp(str1, str2) == 0) {
+//			return 1;
+//		}
+//	}
+//	return 0;
+//}
+//int main() {
+//	char arr1[] = "AABCD";
+//	char arr2[] = "BCDAA";
+//	int ret = is_string_rotate(arr1, arr2);
+//	if (ret == 1) {
+//		printf("yes\n");
+//	}
+//	else {
+//		printf("no\n");
+//	}
+//	return 0; 
+//}
+
+//方法二
+int is_string_rotate(char* str1, char* str2) {
+	//判断字符串长度是否相等
+	if (strlen(str1) != strlen(str2)) {
+		return 0;
+	}
+	//1、str1字符串后追加一个str1
+	//AABCDAABCD
+	int len = strlen(str1);
+	strncat(str1, str1, len);
+	//2、判断str2是否为子串
+	char* ret = strstr(str1, str2);
+	return ret != NULL;
+	/*if (ret == NULL) {
+		return 0;
+	}
+	else {
+		return 1;
+	}*/
 }
 int main() {
-	char arr[10] = "ABCDEF";
-	int k = 2;
-	string_left_rotate(arr, k);
-	printf("%s\n", arr);
+	char arr1[20] = "AABCD";
+	char arr2[] = "BCDAA";
+	int ret = is_string_rotate(arr1, arr2);
+	if (ret == 1) {
+		printf("yes\n");
+	}
+	else {
+		printf("no\n");
+	}
 	return 0;
 }
